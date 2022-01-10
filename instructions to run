@@ -1,0 +1,6 @@
+# developer_hw
+I am using online sources such as jquery, bootstrap, angular.js, and chart.js. If the server where the files are going to be located can not go out to the internet to get these necessary files then they will need to be downloaded locally.
+After that it is just a matter of hosting the files on a local server and accesing index.html from the browser.
+
+I admit I am not an expert on the ins and outs of this so I may not be able to explain it well but all I did was run "python -m http.server" from the "front end" directory in the command prompt and then go to "http://localhost:8000/" (default port) in the browser.
+You will also need to follow the instructions from the readme that was provied to me to start the flask server.
