@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <main>
+        <div class="row">
+            <div class="col-xs-4">
+            </div>
+            <div class="col-xs-4 center">
+                <h2>{{player.info.name}} | #{{player.info.number}}</h2>
+            </div>
+            <div class="col-xs-4">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-4">
+            </div>
+            <div class="col-xs-4 center">
+                <h4>{{player.info.position}} | {{player.info.height}} | {{player.info.weight}} lb | Age: {{player.info.age}} | {{player.info.team}}</h4>
+            </div>
+            <div class="col-xs-4">
+            </div>
+        </div>
+        <div class="row" style="margin-top: 25px;">
+            <div class="col-xs-4">
+            </div>
+            <div class="col-xs-4 center">
+                <button type="button" ng-class="careerButtonClass" ng-disabled="careerButtonDisableFlag" ng-click="goToCareerStats()">Career Stats</button>
+                <button type="button" ng-class="chartButtonClass" ng-disabled="chartButtonDisableFlag" ng-click="goToCharts()" style="margin-left: 10px; margin-right: 10px;">Charts</button>
+                <button type="button" ng-class="logButtonClass" ng-disabled="logButtonDisableFlag" ng-click="goToGameLog()">Game Log</button>
+            </div>
+            <div class="col-xs-4">
+            </div>
+        </div>
+        <div style="margin-top: 15px;" class="row" ng-show="isSkater && showCareerStats">
+            <div class="col-xs-2">
+            </div>
+            <div class="col-xs-8">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Season</th>
+                            <th>Team</th>
+                            <th>GP</th>
+                            <th>Goals</th>
+                            <th>Assists</th>
+                            <th>Points</th>
+                            <th>Shots</th>
+                            <th>Shooting %</th>
+                            <th>Faceoff %</th>
+                            <th>Time On Ice</th>
+                            <th>EV Goals per 60</th>
+                            <th>EV Points per 60</th>
+                            <th>Shots per 60</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="stat in player.stats | limitTo: 10">
+                            <td>{{stat.season}}</td>
+                            <td>{{stat.team}}</td>
+                            <td>{{stat.games}}</td>
+                            <td>{{stat.goals}}</td>
+                            <td>{{stat.assists}}</td>
+                            <td>{{stat.points}}</td>
+                            <td>{{stat.shots}}</td>
+                            <td>{{stat.shotPct}}</td>
+                            <td>{{stat.faceoffPct}}</td>
+                            <td>{{stat.timeOnIce}}</td>
+                            <td>{{stat.evGoalsPer60}}</td>
+                            <td>{{stat.evPointsPer60}}</td>
+                            <td>{{stat.shotsPer60}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xs-2">
+            </div>
+        </div>
+        <div style="margin-top: 50px;" class="row" ng-show="!isSkater && showCareerStats">
+            <div class="col-xs-2">
+            </div>
+            <div class="col-xs-8">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Season</th>
+                            <th>Team</th>
+                            <th>GP</th>
+                            <th>GS</th>
+                            <th>Wins</th>
+                            <th>Losses</th>
+                            <th>Shots Against</th>
+                            <th>Goals Against</th>
+                            <th>GAA</th>
+                            <th>Saves</th>
+                            <th>SV %</th>
+                            <th>EV SV %</th>
+                            <th>Shutouts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="stat in player.stats | limitTo: 10">
+                            <td>{{stat.season}}</td>
+                            <td>{{stat.team}}</td>
+                            <td>{{stat.gamesPlayed}}</td>
+                            <td>{{stat.gamesStarted}}</td>
+                            <td>{{stat.wins}}</td>
+                            <td>{{stat.losses}}</td>
+                            <td>{{stat.shotsAgainst}}</td>
+                            <td>{{stat.goalsAgainst}}</td>
+                            <td>{{stat.goalsAgainstAverage}}</td>
+                            <td>{{stat.saves}}</td>
+                            <td>{{stat.savePct}}</td>
+                            <td>{{stat.evSavePct}}</td>
+                            <td>{{stat.shutouts}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xs-2">
+            </div>
+        </div>
+        <div style="margin-top: 15px;" class="row" ng-show="isSkater && showGameLog">
+            <div class="col-xs-2">
+            </div>
+            <div class="col-xs-8">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Opponent</th>
+                            <th>Goals</th>
+                            <th>Assists</th>
+                            <th>Points</th>
+                            <th>Shots</th>
+                            <th>Shooting %</th>
+                            <th>Time On Ice</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="game in player.games | limitTo: 10">
+                            <td>{{game.date}}</td>
+                            <td>{{game.opponent.name}}</td>
+                            <td>{{game.stat.goals}}</td>
+                            <td>{{game.stat.assists}}</td>
+                            <td>{{game.stat.points}}</td>
+                            <td>{{game.stat.shots}}</td>
+                            <td>{{game.stat.shotPct}}</td>
+                            <td>{{game.stat.timeOnIce}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xs-2">
+            </div>
+        </div>
+        <div style="margin-top: 50px;" class="row" ng-show="!isSkater && showGameLog">
+            <div class="col-xs-2">
+            </div>
+            <div class="col-xs-8">
+                <table class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Opponent</th>
+                            <th>GS</th>
+                            <th>Result</th>
+                            <th>Shots Against</th>
+                            <th>Goals Against</th>
+                            <th>Saves</th>
+                            <th>SV %</th>
+                            <th>EV SV %</th>
+                            <th>Shutouts</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="game in player.games | limitTo: 10">
+                            <td>{{game.date}}</td>
+                            <td>{{game.opponent.name}}</td>
+                            <td>{{game.stat.gamesStarted}}</td>
+                            <td>{{game.stat.decision}}</td>
+                            <td>{{game.stat.shotsAgainst}}</td>
+                            <td>{{game.stat.goalsAgainst}}</td>
+                            <td>{{game.stat.saves}}</td>
+                            <td>{{game.stat.savePercentage}}</td>
+                            <td>{{(game.stat.evenStrengthSavePercentage/100).toFixed(3)}}</td>
+                            <td>{{game.stat.shutouts}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-xs-2">
+            </div>
+        </div>
+        <div style="margin-top: 50px;" class="row" ng-show="showChart">
+            <div class="col-xs-2">
+            </div>
+            <div class="col-xs-8 center">
+                <canvas id="myChart" height="100"></canvas>
+                <button type="button" ng-class="totalChartButtonClass" ng-disabled="totalChartButtonDisableFlag" ng-click="goToTotalChart()" ng-show="isSkater">Totals</button>
+                <button type="button" ng-class="evPer60ChartButtonClass" ng-disabled="evPer60ChartButtonDisableFlag" ng-click="goToEVPer60Chart()" ng-show="isSkater">EV Per 60</button>
+            </div>
+            <div class="col-xs-2">
+            </div>
+        </div>
+        <div style="margin-top: 50px;" class="row">
+            <div class="col-xs-5">
+            </div>
+            <div class="col-xs-2 center" style="padding-bottom: 70px;">
+                <button type="button" class="btn btn-lg btn-warning" ng-click="goToPlayerSearch()">Search another player</button>
+            </div>
+            <div class="col-xs-5">
+            </div>
+        </div>
+    </main>
+</body>
+</html>

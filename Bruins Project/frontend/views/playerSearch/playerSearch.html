@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-4">
+                </div>
+                <div class="col-xs-4">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search for player..." ng-model='textToSearch'>
+                        <span class="input-group-btn">
+                            <button class="btn btn-default" type="button" ng-click="playerSearch(textToSearch)">Search</button>
+                        </span>
+                    </div>
+                </div>
+                <div class="col-xs-4">
+                </div>
+            </div>
+            <div style="margin-top: 50px;" class="row">
+                <div class="col-xs-4">
+                </div>
+                <div class="col-xs-4" style="padding-bottom: 70px;">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th style="width:60%;text-align:center;">Player Name</th>
+                                <th style="width:20%;text-align:center;">Jersey Number</th>
+                                <th style="width:20%;text-align:center;">Position</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="match in matches" ng-click="selectPlayer(match)" style="cursor:pointer;">
+                                <td>{{match.name}}</td>
+                                <td>{{match.number}}</td>
+                                <td>{{match.position}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="col-xs-4">
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
