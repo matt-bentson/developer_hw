@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+    <main>
+        <div class="col-xs-3">
+        </div>
+        <div class="col-xs-6" style="padding-bottom: 70px;">
+            <h4>Project explanation</h4>
+            <p>Overall the site is pretty self explanatory. As you've already figured out the home page has two options front and center. One takes you to the bulk of the project and the other leads you here. I designed the home page in a way where it would be sime to add more tiles to link to other features (not that there are any, but I'll get to that in the "If I had more time..."). Once you are searching for a player, typing any word into the text box and clicking search will search "all" players' full names for that text and return any matches it gets. You can then click on a row in the table and that will bring you to the player card itself. Once there, it's just a matter of clicking buttons and you can navigate your way around the rest of the features.</p>
+            <br/>
+            <h4>Lessons learned</h4>
+            <p>The first problem I ran into is that there is really no way to search for players by name using the NHL's api, it only functions off of a player's id. This is an issue because end users will have no concept of a player's id. Assuming no changes made to the api, I think the best way around this would be to have some sort of DB that stores player names and player ids among other info to help identify players that share a name (team, position, or number etc...). I accomplished this by writing a program (not included in the project code but also not that complicated) to output a file that was one big JSON string containing all of the player info I just mentioned. The program's basic steps were to first get a list of all teams, then for each team get the roster, and go through the roster structs to build the player structs I needed and then I would just add everyone from the roster to the file. With this, I now had the ability for an end user to enter a player name and the application could search the file to find the associated id in order to make the http call to get the stats. The second thing I had to deal with was the difference between skater and goalie stats. The tables and charts need to contain different types of information based on whether the player is a goalie or not. Ideally. I'm sure there would be a way to standardize the data and incorporate some field labels so that the application doesn't need to know whether it is a skater or a goalie, it just uses a stat and it's associatied label. However I can only imagine that goalies and skaters are evaluated differently enough to potentially warrant separate applications anyway where this wouldn't be an issue.</p>
+            <br/>
+            <h4>If I had more time..</h4>
+            <p>The low hanging fruit here is UI improvements, I know there is much to be desired in the look and feel of the site. Focusing more on functionality though, there are a few features I would have loved to add. The ability to compare multiple players by viewing their data at the same time is a natural next step. This could be done by either viewing multiple cards on one screen or creating a new type of "card" that can compare stats of multiple players. The charts section for me was while time was running out so I simply used a few stats. Ideally the charting would be much more in depth with more statistics to choose from. An additional tile that could have been added to the home page could have been player rankings. I would have liked to add an entire new section of the application where a user could choose various statistics and see the best players in those categories. A branch off of that would be a feature where a user could select a player and a stat or set of stats and they would get a list of other players that are similar to them in those stats. For any of these analytical features, it would be best to have the relevant data stored somewhere in an easier to use fashion. Leveraging the rest api to look for players that have a certain stat line is les than ideal. Any sort of DB where you can have a record for every player with all of their stats would be much better. Multiple tables using a unique player id to identify who the record belongs to would work too rather than sticking everything in one table. As far a bug fixes go, I think I did a pretty good job mitigating anything I came across. Outside of maybe a view visual glitches based on small window sizes, the only thing I have is when you refresh the page you always land back on the home page (in case you have not noticed). Ideally I would have been able to make it so that you always land on the page you refreshed from.</p>
+        </div>
+        <div class="col-xs-3">
+        </div>
+    </main>
+</body>
+</html>
